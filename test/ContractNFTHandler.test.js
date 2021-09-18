@@ -6,13 +6,14 @@ const initializeContracts = async (accounts) => {
     let handler = await ContractNFTHandler.deployed();
     const nftContract = await SampleNFTContract.new(accounts[0]);
     await nftContract.changeHandlerContract.sendTransaction(handler.address)
-    await handler.mintContract(accounts[0], nftContract.address, 1234);
+    await handler.mintContract(nftContract.address, 1234, {from:accounts[0]});
     return {handler, nftContract}
 }
 
 contract("Test minting function", accounts => {
+    let handler, nftContract;
     it("Minted NFT successfully", async () => {
-        let {handler, nftContract} = await initializeContracts(accounts);
+        ({handler, nftContract} = await initializeContracts(accounts));
         const nfts = await handler.getAllNFTDetails();
         const nft = await handler.getNFTDetails(1);
         const balance = await handler.balanceOf(accounts[0])
@@ -22,13 +23,13 @@ contract("Test minting function", accounts => {
     })
 
     it("Successfully rejected duplicate minting", async () => {
-        let {handler, nftContract} = await initializeContracts(accounts);
         try {
-            await handler.mintContract(accounts[0], nftContract.address, 1234);
+            await handler.mintContract(nftContract.address, 1234, {from:accounts[0]});
             assert.fail("The transaction should have thrown an error");
         }
         catch (err) {
-            assert.include(err.message, "revert", "The error message should contain 'revert'");
+            const errorMessage = "Contract already minted";
+            assert.include(err.message, errorMessage, `The error message should contain ${errorMessage}`);
         }
     })
 })
@@ -54,14 +55,15 @@ contract("Test purchase function for handler", accounts => {
 })
 
 contract("Test rejection of purchases", accounts => {
+    let handler, nftContract;
     it("Successfully rejected invalid purchases", async () => {
-        let {handler, nftContract} = await initializeContracts(accounts);
+        ({handler, nftContract} = await initializeContracts(accounts));
         try {
             await handler.purchaseNFT.sendTransaction(1, accounts[5], {value:1234})
             assert.fail("The transaction should have thrown an error");
         }
         catch (err) {
-            const errorMessage = "revert Contract is not currently for sale";
+            const errorMessage = "Contract is not currently for sale";
             assert.include(err.message, errorMessage, `The error message should contain ${errorMessage}`);
         }
         try {
@@ -85,23 +87,50 @@ contract("Test rejection of purchases", accounts => {
 })
 
 contract("Test transfer function for handler", accounts => {
+    let handler, nftContract
     it("Transferred NFT successfully", async () => {
-        let {handler, nftContract} = await initializeContracts(accounts);
+        ({handler, nftContract} = await initializeContracts(accounts));
         await handler.transferFrom.sendTransaction(accounts[0], accounts[1], 1, {from: accounts[0]});
         const newOwner = await nftContract.owner();
         assert.equal(newOwner, accounts[1]);
     })
 
     it("Successfully rejected invalid transfers", async () => {
-        let {handler, nftContract} = await initializeContracts(accounts);
         try {
             await handler.transferFrom.sendTransaction(accounts[5], accounts[4], 1, {from: accounts[5]});
             assert.fail("The transaction should have thrown an error");
         }
         catch (err) {
-            const errorMessage = "ERC721: caller is neither owner nor approved";
+            const errorMessage = "ERC721: caller is not owner";
             assert.include(err.message, errorMessage, `The error message should contain ${errorMessage}`);
         }
         
     })
 })
+
+contract("Test burning of contract", accounts => {
+    it("Burned NFT successfully", async () => {
+        let {handler, nftContract} = await initializeContracts(accounts);
+        await handler.burnContract.sendTransaction(1, {from:accounts[0]});
+        const nfts = await handler.getAllNFTDetails();
+        assert.equal(nfts[0][3], '0x0000000000000000000000000000000000000000')
+    })
+})
+
+// contract("Test rejection of burn function", accounts => {
+//     it("Successfully rejected invalid burn", async () => {
+//         let {handler, nftContract} = await initializeContracts(accounts);
+//         const nfts = await handler.getAllNFTDetails();
+//         console.log(nfts)
+//         try {
+//             await handler.burnContract.sendTransaction(1, {from:accounts[2]});
+//             assert.fail("The transaction should have thrown an error");
+//         }
+//         catch (err) {
+//             const errorMessage = "ERC721: caller is not owner";
+//             assert.include(err.message, errorMessage, `The error message should contain ${errorMessage}`);
+//         }
+//     })
+// })
+    
+    

@@ -27,27 +27,50 @@ contract ContractNFTHandler is ERC721 {
     }
 
     modifier isOwner(uint256 tokenId) {
+        require(_msgSender()==ownerOf(tokenId), "ERC721: caller is not owner");
+        _;
+    }
+
+    modifier isApprovedOrOwner(uint256 tokenId) {
         require(_isApprovedOrOwner(_msgSender(), tokenId), "ERC721: caller is neither owner nor approved");
         _;
     }
 
+    function _updateOwnershipInNFT(uint256 tokenId, address to) private {
+        NFTContract nft = NFTContract(_tokenIdtoAdderss[tokenId]);
+        nft.transferOwnership(to);
+    }
+
+    function _burn(uint256 tokenId) internal virtual override {
+        _updateOwnershipInNFT(tokenId, address(0));
+        delete _tokenPrices[tokenId];
+        delete _forSale[tokenId];
+        delete _tokenAddressToId[_tokenIdtoAdderss[tokenId]];
+        delete _tokenIdtoAdderss[tokenId];
+        super._burn(tokenId);
+    }
+
     // Mint an NFT for a smart contract that inherits from NFTContract.sol
-    function mintContract(address _owner, address _contractAddress, uint256 price) external {
+    function mintContract(address _contractAddress, uint256 price) external {
         require(_tokenAddressToId[_contractAddress]==0, "Contract already minted");
         _tokenAddressToId[_contractAddress] = tokenCount;
         _tokenIdtoAdderss[tokenCount] = _contractAddress;
         _tokenPrices[tokenCount] = price;
         _forSale[tokenCount] = false;
-        _safeMint(_owner, tokenCount);
+        _safeMint(_msgSender(), tokenCount);
         tokenCount++;
     }
 
-    function setPrice(uint256 tokenId, uint256 price) external isOwner(tokenId) {
+    function burnContract(uint256 tokenId) external isOwner(tokenId){
+        _burn(tokenId);
+    }
+
+    function setPrice(uint256 tokenId, uint256 price) external isApprovedOrOwner(tokenId) {
         _tokenPrices[tokenId] = price;
     }
 
     // Change the sale status of an NFT if the sale status of an NFT is false, it can no longer be pruchased using the purchaseNFT function
-    function setSaleStatus(uint256 tokenId, bool saleStatus) external isOwner(tokenId) {
+    function setSaleStatus(uint256 tokenId, bool saleStatus) external isApprovedOrOwner(tokenId) {
         _forSale[tokenId] = saleStatus;
     }
 
@@ -71,18 +94,13 @@ contract ContractNFTHandler is ERC721 {
         _forSale[tokenId] = false;
     }
 
-    function _updateOwnershipInNFT(uint256 tokenId, address to) private {
-        NFTContract nft = NFTContract(_tokenIdtoAdderss[tokenId]);
-        nft.transferOwnership(to);
-    }
-
     // Overriding base transfer functions to include _updateOwnershipNFT
     function transferFrom(address from, address to, uint256 tokenId) public virtual override isOwner(tokenId) {
         _transfer(from, to, tokenId);
         _updateOwnershipInNFT(tokenId, to);
     }
 
-    function safeTransferFrom(address from, address to, uint256 tokenId) public virtual override {
+    function safeTransferFrom(address from, address to, uint256 tokenId) public virtual override isOwner(tokenId) {
         safeTransferFrom(from, to, tokenId, "");
         _updateOwnershipInNFT(tokenId, to);
     }
@@ -95,9 +113,7 @@ contract ContractNFTHandler is ERC721 {
     function getAllNFTDetails() public view returns(NFT[] memory) {
         NFT[] memory nftDetails = new NFT[](tokenCount-1);
         for (uint i=1; i<tokenCount; i++) {
-            if (_tokenIdtoAdderss[i]!=address(0)){
             nftDetails[i-1] = NFT(i, _tokenPrices[i], _forSale[i], _tokenIdtoAdderss[i]);
-            }
         }
         return nftDetails;
     }

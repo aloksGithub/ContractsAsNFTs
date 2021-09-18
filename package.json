@@ -20,7 +20,8 @@
   },
   "homepage": "https://github.com/aloksGithub/ContractsAsNFTs#readme",
   "dependencies": {
-    "@openzeppelin/contracts": "^4.3.2"
+    "@openzeppelin/contracts": "^4.3.2",
+    "truffle": "^5.4.11"
   },
   "devDependencies": {
     "chai": "^4.3.4",
