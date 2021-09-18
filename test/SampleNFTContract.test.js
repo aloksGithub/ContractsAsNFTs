@@ -23,4 +23,16 @@ contract("Test transfer ownership", accounts => {
         assert.equal(newOwner, accounts[1]);
         assert.notEqual(newOwner, accounts[0])
     })
+
+    it("Successfully rejected invalid transfer request", async () => {
+        try{
+            const nftContract = await SampleNFTContract.new(accounts[0]);
+            await nftContract.transferOwnership.sendTransaction(accounts[1], {from:accounts[2]});
+            assert.fail("The transaction should have thrown an error");
+        }
+        catch (err) {
+            const errorMessage = "Unauthorized access";
+            assert.include(err.message, errorMessage, `The error message should contain ${errorMessage}`);
+        }
+    })
 })

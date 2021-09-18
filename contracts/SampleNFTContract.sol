@@ -10,7 +10,7 @@ contract SampleNFTContract {
     }
 
     modifier isAuthorized() {
-        require(msg.sender == owner || msg.sender == handlerContract);
+        require(msg.sender == owner || msg.sender == handlerContract, "Unauthorized access");
         _;
     }
 

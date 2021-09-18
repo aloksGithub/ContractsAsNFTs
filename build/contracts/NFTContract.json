@@ -22,13 +22,13 @@
           "type": "address"
         }
       ],
-      "name": "transferOwnerShip",
+      "name": "transferOwnership",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.8.7+commit.e28d00a7\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newHandlerContract\",\"type\":\"address\"}],\"name\":\"changeHandlerContract\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnerShip\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/NFTContract.sol\":\"NFTContract\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/NFTContract.sol\":{\"keccak256\":\"0x3193dd1831611d93e528728f58180b500370633a6dcea6bb91a6862455096606\",\"license\":\"Unlicensed\",\"urls\":[\"bzz-raw://3c531a63f0675652d6caa14a0fcd8d3ec869727304228c1989176e200f29cffa\",\"dweb:/ipfs/QmV9oiJqrHyM7SHUP1z6ACLT7sownWEs2LvD9cPH1TNm9P\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.7+commit.e28d00a7\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newHandlerContract\",\"type\":\"address\"}],\"name\":\"changeHandlerContract\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/NFTContract.sol\":\"NFTContract\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/NFTContract.sol\":{\"keccak256\":\"0x6da246e25bc0907216dc10382d5d120966bf28388c8cfc70203300b793778bff\",\"license\":\"Unlicensed\",\"urls\":[\"bzz-raw://aa5086ee59a40fbd73be4f561afa7c750855f05f0394055856ef126498465911\",\"dweb:/ipfs/QmWrr8cirkc5mkbLZ3BxFExsWTPmFD4adp6Fm9DeNbn9Qx\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "immutableReferences": {},
@@ -36,21 +36,21 @@
   "deployedGeneratedSources": [],
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "// SPDX-License-Identifier: Unlicensed\r\npragma solidity >=0.4.22 <0.9.0;\r\n\r\nabstract contract NFTContract {\r\n    function changeHandlerContract(address newHandlerContract) external virtual {}\r\n\r\n    function transferOwnerShip(address newOwner) external virtual;\r\n}",
+  "source": "// SPDX-License-Identifier: Unlicensed\r\npragma solidity >=0.4.22 <0.9.0;\r\n\r\nabstract contract NFTContract {\r\n    function changeHandlerContract(address newHandlerContract) external virtual {}\r\n\r\n    function transferOwnership(address newOwner) external virtual;\r\n}",
   "sourcePath": "C:\\Users\\alok2\\Downloads\\solidity_projects\\ContractsAsNFTs\\contracts\\NFTContract.sol",
   "ast": {
     "absolutePath": "project:/contracts/NFTContract.sol",
     "exportedSymbols": {
       "NFTContract": [
-        1975
+        2041
       ]
     },
-    "id": 1976,
+    "id": 2042,
     "license": "Unlicensed",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1963,
+        "id": 2029,
         "literals": [
           "solidity",
           ">=",
@@ -69,9 +69,9 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": false,
-        "id": 1975,
+        "id": 2041,
         "linearizedBaseContracts": [
-          1975
+          2041
         ],
         "name": "NFTContract",
         "nameLocation": "94:11:11",
@@ -79,13 +79,13 @@
         "nodes": [
           {
             "body": {
-              "id": 1968,
+              "id": 2034,
               "nodeType": "Block",
               "src": "189:2:11",
               "statements": []
             },
             "functionSelector": "95cb5f81",
-            "id": 1969,
+            "id": 2035,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -93,17 +93,17 @@
             "nameLocation": "122:21:11",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1966,
+              "id": 2032,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1965,
+                  "id": 2031,
                   "mutability": "mutable",
                   "name": "newHandlerContract",
                   "nameLocation": "152:18:11",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1969,
+                  "scope": 2035,
                   "src": "144:26:11",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -112,7 +112,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1964,
+                    "id": 2030,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "144:7:11",
@@ -128,38 +128,38 @@
               "src": "143:28:11"
             },
             "returnParameters": {
-              "id": 1967,
+              "id": 2033,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "189:0:11"
             },
-            "scope": 1975,
+            "scope": 2041,
             "src": "113:78:11",
             "stateMutability": "nonpayable",
             "virtual": true,
             "visibility": "external"
           },
           {
-            "functionSelector": "8863dd1a",
-            "id": 1974,
+            "functionSelector": "f2fde38b",
+            "id": 2040,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
-            "name": "transferOwnerShip",
+            "name": "transferOwnership",
             "nameLocation": "208:17:11",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1972,
+              "id": 2038,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1971,
+                  "id": 2037,
                   "mutability": "mutable",
                   "name": "newOwner",
                   "nameLocation": "234:8:11",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1974,
+                  "scope": 2040,
                   "src": "226:16:11",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -168,7 +168,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1970,
+                    "id": 2036,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "226:7:11",
@@ -184,19 +184,19 @@
               "src": "225:18:11"
             },
             "returnParameters": {
-              "id": 1973,
+              "id": 2039,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "260:0:11"
             },
-            "scope": 1975,
+            "scope": 2041,
             "src": "199:62:11",
             "stateMutability": "nonpayable",
             "virtual": true,
             "visibility": "external"
           }
         ],
-        "scope": 1976,
+        "scope": 2042,
         "src": "76:188:11",
         "usedErrors": []
       }
@@ -207,15 +207,15 @@
     "absolutePath": "project:/contracts/NFTContract.sol",
     "exportedSymbols": {
       "NFTContract": [
-        1975
+        2041
       ]
     },
-    "id": 1976,
+    "id": 2042,
     "license": "Unlicensed",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1963,
+        "id": 2029,
         "literals": [
           "solidity",
           ">=",
@@ -234,9 +234,9 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": false,
-        "id": 1975,
+        "id": 2041,
         "linearizedBaseContracts": [
-          1975
+          2041
         ],
         "name": "NFTContract",
         "nameLocation": "94:11:11",
@@ -244,13 +244,13 @@
         "nodes": [
           {
             "body": {
-              "id": 1968,
+              "id": 2034,
               "nodeType": "Block",
               "src": "189:2:11",
               "statements": []
             },
             "functionSelector": "95cb5f81",
-            "id": 1969,
+            "id": 2035,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -258,17 +258,17 @@
             "nameLocation": "122:21:11",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1966,
+              "id": 2032,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1965,
+                  "id": 2031,
                   "mutability": "mutable",
                   "name": "newHandlerContract",
                   "nameLocation": "152:18:11",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1969,
+                  "scope": 2035,
                   "src": "144:26:11",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -277,7 +277,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1964,
+                    "id": 2030,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "144:7:11",
@@ -293,38 +293,38 @@
               "src": "143:28:11"
             },
             "returnParameters": {
-              "id": 1967,
+              "id": 2033,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "189:0:11"
             },
-            "scope": 1975,
+            "scope": 2041,
             "src": "113:78:11",
             "stateMutability": "nonpayable",
             "virtual": true,
             "visibility": "external"
           },
           {
-            "functionSelector": "8863dd1a",
-            "id": 1974,
+            "functionSelector": "f2fde38b",
+            "id": 2040,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
-            "name": "transferOwnerShip",
+            "name": "transferOwnership",
             "nameLocation": "208:17:11",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1972,
+              "id": 2038,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1971,
+                  "id": 2037,
                   "mutability": "mutable",
                   "name": "newOwner",
                   "nameLocation": "234:8:11",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1974,
+                  "scope": 2040,
                   "src": "226:16:11",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -333,7 +333,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1970,
+                    "id": 2036,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "226:7:11",
@@ -349,19 +349,19 @@
               "src": "225:18:11"
             },
             "returnParameters": {
-              "id": 1973,
+              "id": 2039,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "260:0:11"
             },
-            "scope": 1975,
+            "scope": 2041,
             "src": "199:62:11",
             "stateMutability": "nonpayable",
             "virtual": true,
             "visibility": "external"
           }
         ],
-        "scope": 1976,
+        "scope": 2042,
         "src": "76:188:11",
         "usedErrors": []
       }
@@ -374,7 +374,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-09-17T15:06:27.410Z",
+  "updatedAt": "2021-09-18T14:20:35.133Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},
