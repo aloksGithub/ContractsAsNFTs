@@ -5,4 +5,8 @@ abstract contract NFTContract {
     function changeHandlerContract(address newHandlerContract) external virtual;
 
     function transferOwnership(address newOwner) external virtual;
+
+    function getOwner() public view virtual returns(address);
+    
+    function getHandlerContract() public view virtual returns(address);
 }

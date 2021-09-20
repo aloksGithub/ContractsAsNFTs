@@ -49,12 +49,19 @@ contract ContractNFTHandler is ERC721 {
         delete _tokenIdtoAdderss[tokenId];
         super._burn(tokenId);
     }
-
-    // Mint an NFT for a smart contract that inherits from NFTContract.sol
-    function mintContract(address _contractAddress, uint256 price) external {
-        require(_tokenAddressToId[_contractAddress]==0, "Contract already minted");
-        _tokenAddressToId[_contractAddress] = tokenCount;
-        _tokenIdtoAdderss[tokenCount] = _contractAddress;
+    
+    /**
+     * @dev Mint an NFT for a smart contract that inherits from NFTContract.sol
+     * Can't mint NFT for contract if caller is not owner or contract hasn't
+     * set handler contract address or the NFT for that contrat's ownership has already been minted
+     */
+    function mintContract(address contractAddress, uint256 price) external {
+        require(_tokenAddressToId[contractAddress]==0, "Contract already minted");
+        NFTContract nft = NFTContract(contractAddress);
+        require(nft.getOwner()==_msgSender(), "You can't mint NFT for a contract you don't own");
+        require(nft.getHandlerContract()==address(this), "Handler contract address hasn't been set properly in your contract");
+        _tokenAddressToId[contractAddress] = tokenCount;
+        _tokenIdtoAdderss[tokenCount] = contractAddress;
         _tokenPrices[tokenCount] = price;
         _forSale[tokenCount] = false;
         _safeMint(_msgSender(), tokenCount);

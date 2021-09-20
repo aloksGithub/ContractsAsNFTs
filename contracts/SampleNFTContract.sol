@@ -2,8 +2,8 @@
 pragma solidity ^0.8;
 
 contract SampleNFTContract {
-    address public owner;
-    address public handlerContract;
+    address private owner;
+    address private handlerContract;
 
     constructor(address _owner) {
         owner = _owner;
@@ -20,5 +20,13 @@ contract SampleNFTContract {
 
     function transferOwnership(address newOwner) external isAuthorized {
         owner = newOwner;
+    }
+
+    function getOwner() public view virtual returns(address) {
+        return owner;
+    }
+    
+    function getHandlerContract() public view virtual returns(address) {
+        return handlerContract;
     }
 }
