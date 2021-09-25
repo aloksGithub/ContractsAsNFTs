@@ -11,6 +11,8 @@ const Home: NextPage = () => {
     {
       name: "abcd",
       description: "A smart contract",
+      owner: "0xF1aB51C8b69AFdC89A8Db16F7fe2632f8E26a18D",
+      address: "0x6b4c7a5e3f0b99fcd83e9c089bddd6c7fce5c611",
       price: 999,
       onSale: false,
       link: ""
@@ -18,6 +20,8 @@ const Home: NextPage = () => {
     {
       name: "dsaasd",
       description: "Another smart contract",
+      owner: "0xF1aB51C8b69AFdC89A8Db16F7fe2632f8E26a18D",
+      address: "0x6b4c7a5e3f0b99fcd83e9c089bddd6c7fce5c611",
       price: 999,
       onSale: true,
       link: ""
@@ -25,6 +29,8 @@ const Home: NextPage = () => {
     {
       name: "dasfas",
       description: "Another smart contract",
+      owner: "0xF1aB51C8b69AFdC89A8Db16F7fe2632f8E26a18D",
+      address: "0x6b4c7a5e3f0b99fcd83e9c089bddd6c7fce5c611",
       price: 500,
       onSale: true,
       link: ""
@@ -32,6 +38,8 @@ const Home: NextPage = () => {
     {
       name: "asdftfrtvcr",
       description: "Another smart contract",
+      owner: "0xF1aB51C8b69AFdC89A8Db16F7fe2632f8E26a18D",
+      address: "0x6b4c7a5e3f0b99fcd83e9c089bddd6c7fce5c611",
       price: 9999,
       onSale: true,
       link: ""
@@ -39,6 +47,8 @@ const Home: NextPage = () => {
     {
       name: "dfsgrctcs",
       description: "Another smart contract",
+      owner: "0xF1aB51C8b69AFdC89A8Db16F7fe2632f8E26a18D",
+      address: "0x6b4c7a5e3f0b99fcd83e9c089bddd6c7fce5c611",
       price: 999,
       onSale: false,
       link: ""
@@ -46,6 +56,170 @@ const Home: NextPage = () => {
     {
       name: "ercsdfgst",
       description: "Another smart contract",
+      owner: "0xF1aB51C8b69AFdC89A8Db16F7fe2632f8E26a18D",
+      address: "0x6b4c7a5e3f0b99fcd83e9c089bddd6c7fce5c611",
+      price: 9,
+      onSale: false,
+      link: ""
+    },
+    {
+      name: "asdftfrtvcr",
+      description: "Another smart contract",
+      owner: "0xF1aB51C8b69AFdC89A8Db16F7fe2632f8E26a18D",
+      address: "0x6b4c7a5e3f0b99fcd83e9c089bddd6c7fce5c611",
+      price: 9999,
+      onSale: true,
+      link: ""
+    },
+    {
+      name: "dfsgrctcs",
+      description: "Another smart contract",
+      owner: "0xF1aB51C8b69AFdC89A8Db16F7fe2632f8E26a18D",
+      address: "0x6b4c7a5e3f0b99fcd83e9c089bddd6c7fce5c611",
+      price: 999,
+      onSale: false,
+      link: ""
+    },
+    {
+      name: "ercsdfgst",
+      description: "Another smart contract",
+      owner: "0xF1aB51C8b69AFdC89A8Db16F7fe2632f8E26a18D",
+      address: "0x6b4c7a5e3f0b99fcd83e9c089bddd6c7fce5c611",
+      price: 9,
+      onSale: false,
+      link: ""
+    },
+    {
+      name: "asdftfrtvcr",
+      description: "Another smart contract",
+      owner: "0xF1aB51C8b69AFdC89A8Db16F7fe2632f8E26a18D",
+      address: "0x6b4c7a5e3f0b99fcd83e9c089bddd6c7fce5c611",
+      price: 9999,
+      onSale: true,
+      link: ""
+    },
+    {
+      name: "dfsgrctcs",
+      description: "Another smart contract",
+      owner: "0xF1aB51C8b69AFdC89A8Db16F7fe2632f8E26a18D",
+      address: "0x6b4c7a5e3f0b99fcd83e9c089bddd6c7fce5c611",
+      price: 999,
+      onSale: false,
+      link: ""
+    },
+    {
+      name: "ercsdfgst",
+      description: "Another smart contract",
+      owner: "0xF1aB51C8b69AFdC89A8Db16F7fe2632f8E26a18D",
+      address: "0x6b4c7a5e3f0b99fcd83e9c089bddd6c7fce5c611",
+      price: 9,
+      onSale: false,
+      link: ""
+    },
+    {
+      name: "abcd",
+      description: "A smart contract",
+      owner: "0xF1aB51C8b69AFdC89A8Db16F7fe2632f8E26a18D",
+      address: "0x6b4c7a5e3f0b99fcd83e9c089bddd6c7fce5c611",
+      price: 999,
+      onSale: false,
+      link: ""
+    },
+    {
+      name: "dsaasd",
+      description: "Another smart contract",
+      owner: "0xF1aB51C8b69AFdC89A8Db16F7fe2632f8E26a18D",
+      address: "0x6b4c7a5e3f0b99fcd83e9c089bddd6c7fce5c611",
+      price: 999,
+      onSale: true,
+      link: ""
+    },
+    {
+      name: "dasfas",
+      description: "Another smart contract",
+      owner: "0xF1aB51C8b69AFdC89A8Db16F7fe2632f8E26a18D",
+      address: "0x6b4c7a5e3f0b99fcd83e9c089bddd6c7fce5c611",
+      price: 500,
+      onSale: true,
+      link: ""
+    },
+    {
+      name: "asdftfrtvcr",
+      description: "Another smart contract",
+      owner: "0xF1aB51C8b69AFdC89A8Db16F7fe2632f8E26a18D",
+      address: "0x6b4c7a5e3f0b99fcd83e9c089bddd6c7fce5c611",
+      price: 9999,
+      onSale: true,
+      link: ""
+    },
+    {
+      name: "dfsgrctcs",
+      description: "Another smart contract",
+      owner: "0xF1aB51C8b69AFdC89A8Db16F7fe2632f8E26a18D",
+      address: "0x6b4c7a5e3f0b99fcd83e9c089bddd6c7fce5c611",
+      price: 999,
+      onSale: false,
+      link: ""
+    },
+    {
+      name: "ercsdfgst",
+      description: "Another smart contract",
+      owner: "0xF1aB51C8b69AFdC89A8Db16F7fe2632f8E26a18D",
+      address: "0x6b4c7a5e3f0b99fcd83e9c089bddd6c7fce5c611",
+      price: 9,
+      onSale: false,
+      link: ""
+    },
+    {
+      name: "asdftfrtvcr",
+      description: "Another smart contract",
+      owner: "0xF1aB51C8b69AFdC89A8Db16F7fe2632f8E26a18D",
+      address: "0x6b4c7a5e3f0b99fcd83e9c089bddd6c7fce5c611",
+      price: 9999,
+      onSale: true,
+      link: ""
+    },
+    {
+      name: "dfsgrctcs",
+      description: "Another smart contract",
+      owner: "0xF1aB51C8b69AFdC89A8Db16F7fe2632f8E26a18D",
+      address: "0x6b4c7a5e3f0b99fcd83e9c089bddd6c7fce5c611",
+      price: 999,
+      onSale: false,
+      link: ""
+    },
+    {
+      name: "ercsdfgst",
+      description: "Another smart contract",
+      owner: "0xF1aB51C8b69AFdC89A8Db16F7fe2632f8E26a18D",
+      address: "0x6b4c7a5e3f0b99fcd83e9c089bddd6c7fce5c611",
+      price: 9,
+      onSale: false,
+      link: ""
+    },
+    {
+      name: "asdftfrtvcr",
+      description: "Another smart contract",
+      owner: "0xF1aB51C8b69AFdC89A8Db16F7fe2632f8E26a18D",
+      address: "0x6b4c7a5e3f0b99fcd83e9c089bddd6c7fce5c611",
+      price: 9999,
+      onSale: true,
+      link: ""
+    },
+    {
+      name: "dfsgrctcs",
+      description: "Another smart contract",
+      owner: "0xF1aB51C8b69AFdC89A8Db16F7fe2632f8E26a18D",
+      address: "0x6b4c7a5e3f0b99fcd83e9c089bddd6c7fce5c611",
+      price: 999,
+      onSale: false,
+      link: ""
+    },
+    {
+      name: "ercsdfgst",
+      description: "Another smart contract",
+      owner: "0xF1aB51C8b69AFdC89A8Db16F7fe2632f8E26a18D",
+      address: "0x6b4c7a5e3f0b99fcd83e9c089bddd6c7fce5c611",
       price: 9,
       onSale: false,
       link: ""

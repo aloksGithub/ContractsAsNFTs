@@ -1,64 +1,32 @@
 import React, { FC, ReactElement, useEffect, useState } from 'react'
-import ContractConnection from '../web3/web3Repo'
 import {
-    Heading,
     Checkbox,
     Box,
-    Center,
     Spacer,
     Flex,
     Text,
-    Stack,
     Input,
-    useColorModeValue,
-  } from '@chakra-ui/react';
+} from '@chakra-ui/react';
+import ReactPaginate from 'react-paginate';
+import styles from './contractList.module.css'
 
-type Contract = {
-    name: string;
-    description: string;
-    onSale: boolean;
-    price: number;
-    link: string;
-}
-
-const ContractCard: FC<Contract> = (props: Contract) : ReactElement => {
-    return (
-        <Center py={10} width="25%" minWidth="400">
-            <Box
-                maxW={'270px'}
-                w={'full'}
-                bg={useColorModeValue('white', 'gray.800')}
-                boxShadow={'2xl'}
-                rounded={'md'}
-                overflow={'hidden'}
-                _hover={{
-                    background: "#ebebeb",
-                    cursor: "pointer"
-                }}
-                >
-
-                <Box p={6}>
-                <Stack spacing={0} align={'center'} mb={10}>
-                    <Heading fontSize={'2xl'} fontWeight={500} fontFamily={'body'} mb={10}>
-                    {props.name}
-                    </Heading>
-                    <Text>{props.description}</Text>
-                </Stack>
-
-                <Stack direction={'row'} justify={'center'} spacing={6}>
-                    <Text fontWeight={600}>{props.price}</Text>
-                    {props.onSale ? <Text fontWeight={600} textColor="green">On sale</Text> : <Text fontWeight={600}>Not for sale</Text>}
-                </Stack>
-                </Box>
-            </Box>
-        </Center>
-    )
-}
+import {Contract, ContractCard} from './contractCard'
 
 const ContractList: FC<{contracts: Contract[]}> = (props: {contracts: Contract[]}) : ReactElement => {
     const [displayedContracts, setDisplayedContracts] = useState([{
         name: '',
         description: '',
+        owner: '',
+        address: '',
+        onSale: false,
+        price: 0,
+        link: ''
+    }]);
+    const [loadedContracts, setLoadedContracts] = useState([{
+        name: '',
+        description: '',
+        owner: '',
+        address: '',
         onSale: false,
         price: 0,
         link: ''
@@ -67,10 +35,14 @@ const ContractList: FC<{contracts: Contract[]}> = (props: {contracts: Contract[]
     const [onSale, setOnSale] = useState(false)
     const [minPrice, setMinPrice] = useState(0)
     const [maxPrice, setMaxPrice] = useState(Infinity)
+    const [currentPage, setCurrentPage] = useState(0)
+    const [cardsPerPage, setCardsPerPage] = useState(6)
 
     useEffect(() => {
-        setDisplayedContracts(props.contracts)
+        setLoadedContracts(props.contracts)
+        setDisplayedContracts(props.contracts.slice((currentPage)*cardsPerPage, (currentPage)*cardsPerPage+cardsPerPage))
     }, [])
+    console.log(displayedContracts)
 
     useEffect(() => {
         const nameFilteredContracts = props.contracts.filter(contract => contract.name.includes(searchName))
@@ -80,11 +52,17 @@ const ContractList: FC<{contracts: Contract[]}> = (props: {contracts: Contract[]
         if (onSale) {
             finalFilteredContracts = maxPriceFilteredContracts.filter(contract => contract.onSale)
         }
-        setDisplayedContracts(finalFilteredContracts)
-    }, [searchName, onSale, minPrice, maxPrice])
+        setLoadedContracts(finalFilteredContracts)
+        const paginationFilteredContracts = finalFilteredContracts.slice((currentPage)*cardsPerPage, (currentPage)*cardsPerPage+cardsPerPage)
+        console.log((currentPage)*cardsPerPage, (currentPage)*cardsPerPage+cardsPerPage)
+        console.log(finalFilteredContracts)
+        console.log(paginationFilteredContracts)
+        setDisplayedContracts(paginationFilteredContracts)
+    }, [searchName, onSale, minPrice, maxPrice, currentPage])
 
     const onChangeSearch = (e:any) => {
         setSearcName(e.target.value)
+        setCurrentPage(1)
     }
 
     const onChangeMinPrice = (e:any) => {
@@ -93,6 +71,7 @@ const ContractList: FC<{contracts: Contract[]}> = (props: {contracts: Contract[]
         } else {
             setMinPrice(+e.target.value)
         }
+        setCurrentPage(1)
     }
 
     const onChangeMaxPrice = (e:any) => {
@@ -101,10 +80,16 @@ const ContractList: FC<{contracts: Contract[]}> = (props: {contracts: Contract[]
         } else {
             setMaxPrice(+e.target.value)
         }
+        setCurrentPage(1)
     }
 
     const onSaleFilter = (e:any) => {
         setOnSale(e.target.checked)
+        setCurrentPage(1)
+    }
+
+    const handlePageChange = (data:{selected: number}) => {
+        setCurrentPage(data.selected)
     }
 
     return (
@@ -119,7 +104,14 @@ const ContractList: FC<{contracts: Contract[]}> = (props: {contracts: Contract[]
                 <Flex alignItems="center" pl="5" pr="2"><Text>Max Price (eth):</Text></Flex>
                 <Input width="20" onChange={onChangeMaxPrice}/>
             </Flex>
-            <Flex background="#dcf3f7" wrap="wrap" alignItems="center" justifyContent="space-between">{displayedContracts.map(contract => <ContractCard {...contract}></ContractCard>)}</Flex>
+            <Flex background="#dcf3f7" wrap="wrap" alignItems="center" justifyContent="space-between">{displayedContracts.map(contract => <ContractCard contract={contract}></ContractCard>)}</Flex>
+            <Flex className={styles.pagination} justifyContent="end" py={10}>
+                <ReactPaginate 
+                pageCount={Math.ceil(loadedContracts.length/cardsPerPage)} 
+                pageRangeDisplayed={6} 
+                marginPagesDisplayed={2} 
+                onPageChange={handlePageChange}/>
+            </Flex>
         </Box>
     )
 }

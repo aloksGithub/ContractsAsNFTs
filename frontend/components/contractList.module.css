@@ -1,0 +1,16 @@
+.pagination {
+}
+
+.pagination ul {
+    background-color: rgb(198, 237, 255);
+    border-radius: 10px;
+}
+
+.pagination li {
+    float: left;
+    padding: 10px;
+    list-style-type: none;
+    margin: 1px;
+    color: #033c96;
+    font-weight: bold;
+}
