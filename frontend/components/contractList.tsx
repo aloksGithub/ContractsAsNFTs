@@ -42,7 +42,6 @@ const ContractList: FC<{contracts: Contract[]}> = (props: {contracts: Contract[]
         setLoadedContracts(props.contracts)
         setDisplayedContracts(props.contracts.slice((currentPage)*cardsPerPage, (currentPage)*cardsPerPage+cardsPerPage))
     }, [])
-    console.log(displayedContracts)
 
     useEffect(() => {
         const nameFilteredContracts = props.contracts.filter(contract => contract.name.includes(searchName))
@@ -54,9 +53,6 @@ const ContractList: FC<{contracts: Contract[]}> = (props: {contracts: Contract[]
         }
         setLoadedContracts(finalFilteredContracts)
         const paginationFilteredContracts = finalFilteredContracts.slice((currentPage)*cardsPerPage, (currentPage)*cardsPerPage+cardsPerPage)
-        console.log((currentPage)*cardsPerPage, (currentPage)*cardsPerPage+cardsPerPage)
-        console.log(finalFilteredContracts)
-        console.log(paginationFilteredContracts)
         setDisplayedContracts(paginationFilteredContracts)
     }, [searchName, onSale, minPrice, maxPrice, currentPage])
 

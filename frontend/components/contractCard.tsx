@@ -34,13 +34,14 @@ import {
 import {Formik, Field, Form} from 'formik';
 
 export type Contract = {
-    name: string;
-    description: string;
+    id: number,
+    name?: string;
+    description?: string;
     owner: string;
     address: string;
     onSale: boolean;
     price: number;
-    link: string;
+    link?: string;
 }
 
 const ContractModal = (props: {contract: Contract; isOpen: boolean; onClose: ()=>void}) : ReactElement => {
@@ -81,7 +82,7 @@ const ContractModal = (props: {contract: Contract; isOpen: boolean; onClose: ()=
                         {(props) => (
                             <Form>
                             <Field name="name" validate={validateName}>
-                                {({ field, form }) => (
+                                {({ field, form }:any) => (
                                 <FormControl isInvalid={form.errors.name && form.touched.name}>
                                     <FormLabel htmlFor="name">First name</FormLabel>
                                     <Input {...field} id="name" placeholder="name" />
@@ -90,7 +91,7 @@ const ContractModal = (props: {contract: Contract; isOpen: boolean; onClose: ()=
                                 )}
                             </Field>
                             <Field name="description" validate={validateName}>
-                                {({ field, form }) => (
+                                {({ field, form }:any) => (
                                 <FormControl isInvalid={form.errors.name && form.touched.name} pt={5}>
                                     <FormLabel htmlFor="description">Description</FormLabel>
                                     <Input {...field} id="description" placeholder="description" />
@@ -99,7 +100,7 @@ const ContractModal = (props: {contract: Contract; isOpen: boolean; onClose: ()=
                                 )}
                             </Field>
                             <Field name="address" validate={validateName}>
-                                {({ field, form }) => (
+                                {({ field, form }:any) => (
                                 <FormControl isInvalid={form.errors.name && form.touched.name} pt={5}>
                                     <FormLabel htmlFor="address">Contract address</FormLabel>
                                     <Input {...field} id="address" isDisabled/>
@@ -108,7 +109,7 @@ const ContractModal = (props: {contract: Contract; isOpen: boolean; onClose: ()=
                                 )}
                             </Field>
                             <Field name="owner" validate={validateName}>
-                                {({ field, form }) => (
+                                {({ field, form }:any) => (
                                 <FormControl isInvalid={form.errors.name && form.touched.name} pt={5}>
                                     <FormLabel htmlFor="owner">Owner address</FormLabel>
                                     <Input {...field} id="owner"/>
@@ -117,7 +118,7 @@ const ContractModal = (props: {contract: Contract; isOpen: boolean; onClose: ()=
                                 )}
                             </Field>
                             <Field name="url" validate={validateName}>
-                                {({ field, form }) => (
+                                {({ field, form }:any) => (
                                 <FormControl isInvalid={form.errors.name && form.touched.name} pt={5}>
                                     <FormLabel htmlFor="url">URL</FormLabel>
                                     <Input {...field} id="url" />
@@ -126,7 +127,7 @@ const ContractModal = (props: {contract: Contract; isOpen: boolean; onClose: ()=
                                 )}
                             </Field>
                             <Field name="price" validate={validateName}>
-                                {({ field, form }) => (
+                                {({ field, form }:any) => (
                                 <FormControl isInvalid={form.errors.name && form.touched.name} pt={5}>
                                     <FormLabel htmlFor="price">Price</FormLabel>
                                     <NumberInput {...field} id="price" min={0} max={Infinity}>
@@ -137,7 +138,7 @@ const ContractModal = (props: {contract: Contract; isOpen: boolean; onClose: ()=
                                 )}
                             </Field>
                             <Field name="onSale" validate={validateName}>
-                                {({ field, form }) => (
+                                {({ field, form }:any) => (
                                 <FormControl isInvalid={form.errors.name && form.touched.name} pt={5}>
                                     <FormLabel htmlFor="onSale">Sale status</FormLabel>
                                     <Checkbox {...field} id="onSale" defaultChecked={contract.onSale}>On sale</Checkbox>
