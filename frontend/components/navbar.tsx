@@ -228,6 +228,7 @@ interface NavItem {
 const NAV_ITEMS: Array<NavItem> = [
   {
     label: 'Browse',
+    href: '/'
   },
   {
     label: 'My Contracts',
@@ -238,6 +239,6 @@ const NAV_ITEMS: Array<NavItem> = [
   },
   {
     label: 'Github',
-    href: '#',
+    href: 'https://github.com/aloksGithub/ContractsAsNFTs',
   },
 ];

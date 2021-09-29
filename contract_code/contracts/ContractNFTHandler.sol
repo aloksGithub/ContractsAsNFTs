@@ -13,7 +13,6 @@ contract ContractNFTHandler is ERC721 {
         uint256 price;
         bool onSale;
         address contractAddress;
-        address owner;
     }
 
     uint256 public tokenCount;
@@ -121,13 +120,13 @@ contract ContractNFTHandler is ERC721 {
     function getAllNFTDetails() public view returns(NFT[] memory) {
         NFT[] memory nftDetails = new NFT[](tokenCount-1);
         for (uint i=1; i<tokenCount; i++) {
-            nftDetails[i-1] = NFT(i, _tokenPrices[i], _forSale[i], _tokenIdtoAdderss[i], ownerOf(i));
+            nftDetails[i-1] = NFT(i, _tokenPrices[i], _forSale[i], _tokenIdtoAdderss[i]);
         }
         return nftDetails;
     }
 
     function getNFTDetails(uint256 tokenId) public view returns(NFT memory) {
-        NFT memory nftDetails = NFT(tokenId, _tokenPrices[tokenId], _forSale[tokenId], _tokenIdtoAdderss[tokenId], ownerOf(tokenId));
+        NFT memory nftDetails = NFT(tokenId, _tokenPrices[tokenId], _forSale[tokenId], _tokenIdtoAdderss[tokenId]);
         return nftDetails;
     }
 }

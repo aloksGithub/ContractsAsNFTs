@@ -14,6 +14,7 @@ import {Contract, ContractCard} from './contractCard'
 
 const ContractList: FC<{contracts: Contract[]}> = (props: {contracts: Contract[]}) : ReactElement => {
     const [displayedContracts, setDisplayedContracts] = useState([{
+        id: 0,
         name: '',
         description: '',
         owner: '',
@@ -23,6 +24,7 @@ const ContractList: FC<{contracts: Contract[]}> = (props: {contracts: Contract[]
         link: ''
     }]);
     const [loadedContracts, setLoadedContracts] = useState([{
+        id: 0,
         name: '',
         description: '',
         owner: '',
@@ -100,7 +102,7 @@ const ContractList: FC<{contracts: Contract[]}> = (props: {contracts: Contract[]
                 <Flex alignItems="center" pl="5" pr="2"><Text>Max Price (eth):</Text></Flex>
                 <Input width="20" onChange={onChangeMaxPrice}/>
             </Flex>
-            <Flex background="#dcf3f7" wrap="wrap" alignItems="center" justifyContent="space-between">{displayedContracts.map(contract => <ContractCard contract={contract}></ContractCard>)}</Flex>
+            <Flex background="#dcf3f7" wrap="wrap" alignItems="center" justifyContent="space-between">{displayedContracts.map(contract => <ContractCard contract={contract} key={contract.id}></ContractCard>)}</Flex>
             <Flex className={styles.pagination} justifyContent="end" py={10}>
                 <ReactPaginate 
                 pageCount={Math.ceil(loadedContracts.length/cardsPerPage)} 
